@@ -1,20 +1,18 @@
 # DIVERS: Decomposition of Variance Using Replicate Sampling
+code for DIVERS (Decomposition of Variance Using Replicate Sampling), including absolute abundance calculation for spike-in sequencing and variance decompostion of absolute abundance
 
 ## dependencies
 
-* R
+* R (we have tested this code for R version 3.5.0)
+	- argparse
+	- matrixStats
+	- progress
 
-* python 2.7, ipython/jupyter 5.1.0
+* python 3.6, jupyter 4.3.0
 	- pandas
 	- numpy
 	- matplotlib
-	- seaborn
-	- scipy
-	- sklearn
-	- _NB: Most of the above libraries are bundled together in the [Anaconda distribution](https://www.continuum.io/downloads)_
-* [NCBI BLAST 2.6.0](https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=Download)
-
-we have tested this code on Mac OS X v10.11.3.
+	- _NB: Above libraries are bundled together in the [Anaconda distribution](https://www.continuum.io/downloads)_
 
 ## spacer extraction and alignment workflow
 
