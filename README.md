@@ -42,9 +42,9 @@ optional arguments:
 ```
 ### Input format
 
-****[Important] avoid any delimiter(tab or blackspace) in OTU ID and sample ID****
+****[Important] avoid any delimiter (tab or blackspace) in OTU ID and sample ID****
 
-**sample_list:** list of sample IDs[example: ./test_data/test.sample_list.txt]
+**sample_list:** list of sample IDs [example: ./test_data/test.sample_list.txt]
 
 ```
 d16s1r1
@@ -103,6 +103,30 @@ d16s2r1 8263
 d16s2r2 11423
 d17s1r1 4107
 ...
+```
+
+### Output for absolute abundance calculation
+Three files will be generated:
+* [output_prefix].total_density.tsv
+	- if -r, --renormalize is specified, the bacterial densities will be normalized to mean of 1
+
+* [output_prefix].relative_abundance.csv
+	- matrix of relative abundance for each OTU and sample
+
+* [output_prefix].absolute_abundance.csv
+	- matrix of absolute abundance for each OTU and sample
+	- input for DIVERS for variance decompostion
+
+### Example
+```
+mkdir ./test_output
+chmod +x ./script/calculate_absolute_abundance.R
+
+./script/calculate_absolute_abundance.R -s ./test_data/test.sample_list.txt \
+					-i ./test_data/test.OTU_readsCount.csv \
+					-w ./test_data/test.sample_weight_tsv \
+					-p ./test_data/test.spikein_readsCount.tsv \
+					-o ./test_output/test
 ```
 
 
