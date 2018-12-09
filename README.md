@@ -18,7 +18,7 @@ code for DIVERS (Decomposition of Variance Using Replicate Sampling), including 
 
 ### Description
 ```
-$ usage: ./script/calculate_absolute_abundance.R [-h] [-s sample_list]
+usage: ./script/calculate_absolute_abundance.R [-h] [-s sample_list]
                                                [-i otu_count]
                                                [-w weight_table]
                                                [-p spikein_count]
@@ -128,6 +128,51 @@ chmod +x ./script/calculate_absolute_abundance.R
 					-p ./test_data/test.spikein_readsCount.tsv \
 					-o ./test_output/test
 ```
+
+## Variance decompostion of absolute abundance by DIVERS
+
+### Description
+```
+usage: ./script/DIVERS.R [-h] [-i abundance_matrix] [-c configure]
+                         [-o output_prefix] [-v number_variance]
+                         [-n number_iteration]
+
+DIVERS: decomposition of variance using replicate sampling
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -i abundance_matrix, --input abundance_matrix
+                        matrix of absolute abundance(.csv) [required]
+  -c configure, --config configure
+                        configure file of sample hierarchy [required]
+  -o output_prefix, --output output_prefix
+                        prefix of output files [required]
+  -v number_variance, --variance number_variance
+                        number of variance types to be decomposed, should be
+                        either 3 or 2 [default: 3]
+  -n number_iteration, --iteration number_iteration
+                        number of iterations [default: 1000]
+```
+
+### Input format
+
+****[Important] avoid any delimiter (tab or blackspace) in OTU ID and sample ID****
+
+**abundance_matrix:** matrix of absolute abundance for each OTU and example [example:./test_output/test.absolute_abundance.csv]
+
+* each row is a OTU and each column is a sample
+
+* the matrix should be provided in CSV format
+
+```
+,d16s1r1,d16s2r1,d16s2r2,d17s1r1,...
+otu_1,0.0629932321456365,0.0313941944754388,0.0243084036859114,0.194264427469352,...
+otu_2,0.0358187323593084,0.018817838929502,0.0176276948619145,0.0603644998067095,...
+otu_3,0.0445597287297474,0.0256352197823737,0.0239646011265478,0.0670987114786945,...
+otu_4,0.00891839666578007,0.00391454631163751,0.0029535765327144,0.0168220066665651,...
+...
+```
+
 
 
 create BLAST database for determining spacer origins. this only needs to be done once. note that if the ncbi-BLAST bin is already on your path, the script can be executed without the path argument. *we only provide the reference for the main pRec/pTrig recording strain in the _ref_ folder to save space in the repo, but references for the other recording strains can be easily recreated using plasmid sequences from the _plasmid_maps_ folder.*
