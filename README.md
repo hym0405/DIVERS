@@ -255,7 +255,7 @@ d17s2r2 17  2   2   Y
 chmod +x ./script/DIVERS.R
 
 ./script/DIVERS.R -i ./test_output/test.absolute_abundance.csv \
-		  -c ./test_output/test.sample_info.config \
+		  -c ./test_data/test.sample_info.config \
 		  -o ./test_output/test \
 		  -v 3
 		  -n 1000
