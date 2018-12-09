@@ -41,8 +41,7 @@ optional arguments:
   -r, --renormalize     renormalize bacterial densities to mean of 1
 ```
 ### Input format
-#### sample_list:
-list of samples (./test_data/test.sample_list.txt)
+#### sample_list: list of samples [example: ./test_data/test.sample_list.txt]
 ```
 d16s1r1
 d16s2r1
