@@ -71,7 +71,7 @@ otu_4,553,503,378,622,...
 ...
 ```
 
-**weight_table:** table of sample weights(mg) [example: ./test_data/test.sample_weight_tsv]
+**weight_table:** table of sample weights (mg) [example: ./test_data/test.sample_weight_tsv]
 
 * the first column is sample ID and second column is sample weight
 
@@ -115,7 +115,7 @@ Three files will be generated:
 
 * [output_prefix].absolute_abundance.csv
 	- matrix of absolute abundance for each OTU and sample
-	- input for DIVERS for variance decompostion
+	- DIVERS will take this file as input for variance decompostion
 
 ### Example
 ```
