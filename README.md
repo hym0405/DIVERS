@@ -158,7 +158,8 @@ optional arguments:
 
 ****[Important] avoid any delimiter (tab or blackspace) in OTU ID and sample ID****
 
-**abundance_matrix:** matrix of absolute abundance for each OTU and example [example: ./test_output/test.absolute_abundance.csv]
+**abundance_matrix:** matrix of absolute abundance for each OTU and example
+[example: ./test_output/test.absolute_abundance.csv]
 
 * each row is a OTU and each column is a sample
 
