@@ -1,5 +1,5 @@
 # DIVERS: Decomposition of Variance Using Replicate Sampling
-code for DIVERS (Decomposition of Variance Using Replicate Sampling), including absolute abundance calculation for spike-in sequencing and variance decompostion of absolute abundance
+code for DIVERS (Decomposition of Variance Using Replicate Sampling), including absolute abundance calculation for spike-in sequencing and variance decompostion of absolute abundance.
 
 ## dependencies
 
@@ -41,7 +41,7 @@ optional arguments:
   -r, --renormalize     renormalize bacterial densities to mean of 1
 ```
 ### Input format
-**sample_list:** list of samples [example: ./test_data/test.sample_list.txt]
+**sample_list:** list of sample ID[example: ./test_data/test.sample_list.txt]
 ```
 d16s1r1
 d16s2r1
@@ -49,9 +49,11 @@ d16s2r2
 d17s1r1
 ...
 ```
+
 **otu_count:** matrix of reads counts for each OTU and sample (each row is a OTU and each column is a sample) [example: ./test_data/test.OTU_readsCount.csv]
 
-****[Important] matrix should be provided in CSV format****
+****[Important] the matrix should be provided in CSV format****
+
 ****[Important] reads counts for spike-in strain are excluded in this matrix****
 
 ```
@@ -60,6 +62,23 @@ otu_1,3906,4034,3111,7183,...
 otu_2,2221,2418,2256,2232,...
 otu_3,2763,3294,3067,2481,...
 otu_4,553,503,378,622,...
+...
+```
+
+**weight_table:** table of sample weights(mg) (the first column is sample ID and second column is sample weight) [example: ./test_data/test.sample_weight_tsv]
+
+****[Important] tab-delimited****
+
+****[Important] first row should be header (sample[tab]weight)****
+
+****[Important] avoid any delimiter(tab or blackspace) in OTU ID and sample ID****
+
+```
+sample  weight
+d16s1r1 41.5
+d16s2r1 85.5
+d16s2r2 61.6
+d17s1r1 49.5
 ...
 ```
 
