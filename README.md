@@ -44,7 +44,9 @@ optional arguments:
 
 ****[Important] avoid any delimiter (tab or blackspace) in OTU ID and sample ID****
 
-**sample_list:** list of sample IDs [example: ./test_data/test.sample_list.txt]
+**sample_list:** list of sample IDs
+
+[example: ./test_data/test.sample_list.txt]
 
 ```
 d16s1r1
@@ -54,7 +56,9 @@ d17s1r1
 ...
 ```
 
-**otu_count:** matrix of reads counts for each OTU and sample [example: ./test_data/test.OTU_readsCount.csv]
+**otu_count:** matrix of reads counts for each OTU and sample
+
+[example: ./test_data/test.OTU_readsCount.csv]
 
 * each row is a OTU and each column is a sample
 
@@ -71,7 +75,9 @@ otu_4,553,503,378,622,...
 ...
 ```
 
-**weight_table:** table of sample weights (mg) [example: ./test_data/test.sample_weight_tsv]
+**weight_table:** table of sample weights (mg)
+
+[example: ./test_data/test.sample_weight_tsv]
 
 * the first column is sample ID and second column is sample weight
 
@@ -88,7 +94,9 @@ d17s1r1 49.5
 ...
 ```
 
-**spikein_count:** table of reads counts of spike-in strain [example: ./test_data/test.spikein_readsCount.tsv]
+**spikein_count:** table of reads counts of spike-in strain
+
+[example: ./test_data/test.spikein_readsCount.tsv]
 
 * the first column is sample ID and second column is number of reads mapped to spike-in strain
 
@@ -159,6 +167,7 @@ optional arguments:
 ****[Important] avoid any delimiter (tab or blackspace) in OTU ID and sample ID****
 
 **abundance_matrix:** matrix of absolute abundance for each OTU and example
+
 [example: ./test_output/test.absolute_abundance.csv]
 
 * each row is a OTU and each column is a sample
