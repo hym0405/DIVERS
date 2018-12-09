@@ -156,8 +156,9 @@ optional arguments:
   -o output_prefix, --output output_prefix
                         prefix of output files [required]
   -v number_variance, --variance number_variance
-                        number of variance types to be decomposed, should be
-                        either 3 or 2 [default: 3]
+                        depth of variance hierarchy to be decomposed, should
+                        be either 3 (temporal, spatial and technical) or 2
+                        (temporal_spatial and technical) [default: 3]
   -n number_iteration, --iteration number_iteration
                         number of iterations [default: 1000]
 ```
@@ -183,6 +184,43 @@ otu_4,0.00891839666578007,0.00391454631163751,0.0029535765327144,0.0168220066665
 ...
 ```
 
+**configure:** configure file of sample hierarchy
+
+[example: ./test_output/test.sample_info.config]
+
+* column 1 is sample ID and column 5 is the label of variable
+
+* column 2-4 are indices for different types of variance, and DIVERS will only take the information of sample hierarchy from column 1,2,5
+
+* if [number_variance] is specified as 3, DIVERS will expect to get exactly one sample labelled as X for each **temporal index**, one sample labelled as Y for each **temporal index** and one sample labelled as Z for each **temporal index**
+
+* if [number_variance] is specified as 2, DIVERS will expect to get exactly one sample labelled as X for each **temporal index** and one sample labelled as Y for each **temporal index**. Spatial index will be ignored
+
+* tab-delimited
+
+* first row should be header (sample[tab]temporal[tab]spatial[tab]technical[tab]variable)
+
+
+**if [number_variance] is specified as 3**
+```
+sample  temporal    spatial technical   variable
+d16s1r1 16  1   1   Z   
+d16s2r1 16  2   1   X   
+d16s2r2 16  2   2   Y   
+d17s1r1 17  1   1   Z   
+d17s2r1 17  2   1   X   
+d17s2r2 17  2   2   Y 
+...
+```
+**if [number_variance] is specified as 2**
+```
+sample  temporal    spatial technical   variable 
+d16s2r1 16  2   1   X   
+d16s2r2 16  2   2   Y  
+d17s2r1 17  2   1   X
+d17s2r2 17  2   2   Y
+...
+```
 
 
 create BLAST database for determining spacer origins. this only needs to be done once. note that if the ncbi-BLAST bin is already on your path, the script can be executed without the path argument. *we only provide the reference for the main pRec/pTrig recording strain in the _ref_ folder to save space in the repo, but references for the other recording strains can be easily recreated using plasmid sequences from the _plasmid_maps_ folder.*
