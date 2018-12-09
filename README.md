@@ -41,7 +41,11 @@ optional arguments:
   -r, --renormalize     renormalize bacterial densities to mean of 1
 ```
 ### Input format
+
+****[Important] avoid any delimiter(tab or blackspace) in OTU ID and sample ID****
+
 **sample_list:** list of sample ID[example: ./test_data/test.sample_list.txt]
+
 ```
 d16s1r1
 d16s2r1
@@ -54,7 +58,7 @@ d17s1r1
 
 ****[Important] the matrix should be provided in CSV format****
 
-****[Important] reads counts for spike-in strain are excluded in this matrix****
+****[Important] reads counts for spike-in strain are excluded****
 
 ```
 ,d16s1r1,d16s2r1,d16s2r2,d17s1r1,...
@@ -71,8 +75,6 @@ otu_4,553,503,378,622,...
 
 ****[Important] first row should be header (sample[tab]weight)****
 
-****[Important] avoid any delimiter(tab or blackspace) in OTU ID and sample ID****
-
 ```
 sample  weight
 d16s1r1 41.5
@@ -81,6 +83,22 @@ d16s2r2 61.6
 d17s1r1 49.5
 ...
 ```
+
+**spikein_count:** table of reads counts of spike-in strain (the first column is sample ID and second column is number of reads mapped to spike-in strain) [example: ./test_data/test.spikein_readsCount.tsv]
+
+****[Important] tab-delimited****
+
+****[Important] first row should be header (sample[tab]spikein)****
+
+```
+sample  spikein
+d16s1r1 8215
+d16s2r1 8263
+d16s2r2 11423
+d17s1r1 4107
+...
+```
+
 
 create BLAST database for determining spacer origins. this only needs to be done once. note that if the ncbi-BLAST bin is already on your path, the script can be executed without the path argument. *we only provide the reference for the main pRec/pTrig recording strain in the _ref_ folder to save space in the repo, but references for the other recording strains can be easily recreated using plasmid sequences from the _plasmid_maps_ folder.*
 ```
