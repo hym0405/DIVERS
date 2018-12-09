@@ -1,14 +1,8 @@
-# trace: temporal recording in arrays by crispr expansion
-
-code from the paper **"Multiplex recording of cellular events over time on CRISPR biological tape"** Sheth RU, Yim SS, Wu FL, Wang HH. Science, 2017 (First Release)
-
-the full paper and supplemental information can be accessed [here](http://science.sciencemag.org/lookup/doi/10.1126/science.aao0958)
-
-## data avaliability
-
-raw sequencing data can be found at NCBI SRA under PRJNA417866. plasmids have been deposited to Addgene; plasmid maps can be found in the _plasmid_maps_ folder.
+# DIVERS: Decomposition of Variance Using Replicate Sampling
 
 ## dependencies
+
+* R
 
 * python 2.7, ipython/jupyter 5.1.0
 	- pandas
