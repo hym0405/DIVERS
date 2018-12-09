@@ -55,9 +55,13 @@ d17s1r1
 ```
 
 **otu_count:** matrix of reads counts for each OTU and sample (each row is a OTU and each column is a sample) [example: ./test_data/test.OTU_readsCount.csv]
-	- each row is a OTU and each column is a sample
-	- the matrix should be provided in CSV format
-	- reads counts for spike-in strain are excluded
+
+* each row is a OTU and each column is a sample
+
+* the matrix should be provided in CSV format
+
+* reads counts for spike-in strain are excluded
+
 ****[Important] the matrix should be provided in CSV format****
 
 ****[Important] reads counts for spike-in strain are excluded****
