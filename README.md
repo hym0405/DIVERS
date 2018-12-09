@@ -44,7 +44,7 @@ optional arguments:
 
 ****[Important] avoid any delimiter(tab or blackspace) in OTU ID and sample ID****
 
-**sample_list:** list of sample ID[example: ./test_data/test.sample_list.txt]
+**sample_list:** list of sample IDs[example: ./test_data/test.sample_list.txt]
 
 ```
 d16s1r1
@@ -54,17 +54,13 @@ d17s1r1
 ...
 ```
 
-**otu_count:** matrix of reads counts for each OTU and sample (each row is a OTU and each column is a sample) [example: ./test_data/test.OTU_readsCount.csv]
+**otu_count:** matrix of reads counts for each OTU and sample [example: ./test_data/test.OTU_readsCount.csv]
 
 * each row is a OTU and each column is a sample
 
 * the matrix should be provided in CSV format
 
 * reads counts for spike-in strain are excluded
-
-****[Important] the matrix should be provided in CSV format****
-
-****[Important] reads counts for spike-in strain are excluded****
 
 ```
 ,d16s1r1,d16s2r1,d16s2r2,d17s1r1,...
@@ -75,11 +71,13 @@ otu_4,553,503,378,622,...
 ...
 ```
 
-**weight_table:** table of sample weights(mg) (the first column is sample ID and second column is sample weight) [example: ./test_data/test.sample_weight_tsv]
+**weight_table:** table of sample weights(mg) [example: ./test_data/test.sample_weight_tsv]
 
-****[Important] tab-delimited****
+* the first column is sample ID and second column is sample weight
 
-****[Important] first row should be header (sample[tab]weight)****
+* tab-delimited
+
+* first row should be header (sample[tab]weight)
 
 ```
 sample  weight
@@ -90,11 +88,13 @@ d17s1r1 49.5
 ...
 ```
 
-**spikein_count:** table of reads counts of spike-in strain (the first column is sample ID and second column is number of reads mapped to spike-in strain) [example: ./test_data/test.spikein_readsCount.tsv]
+**spikein_count:** table of reads counts of spike-in strain [example: ./test_data/test.spikein_readsCount.tsv]
 
-****[Important] tab-delimited****
+* the first column is sample ID and second column is number of reads mapped to spike-in strain
 
-****[Important] first row should be header (sample[tab]spikein)****
+* tab-delimited
+
+* first row should be header (sample[tab]spikein)
 
 ```
 sample  spikein
