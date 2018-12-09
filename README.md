@@ -257,13 +257,13 @@ chmod +x ./script/DIVERS.R
 ./script/DIVERS.R -i ./test_output/test.absolute_abundance.csv \
 		  -c ./test_data/test.sample_info.config \
 		  -o ./test_output/test \
-		  -v 3
+		  -v 3 \
 		  -n 1000
 ```
 
 ## data analysis
 
-to get you started tinkering with the TRACE system, we have provided some example analysis code to investigate the resulting data. check out the demo notebook, where we analyze the 4 day temporal recording experiment from Fig. 2 and 3 in the Science manuscript: [_demo/trace_4day_analysis.ipynb_](demo/trace_4day_analysis.ipynb)
+We have provided some example analysis code to investigate the resulting data. check out the demo notebook, where we analyze the DIVERS result of fecal samples spike-in sequencing from Fig. 1d and Fig. 3a/b in the manuscript [_demo/DIVERS_analysis.ipynb_](demo/DIVERS_analysis.ipynb)
 ```
 $ cd demo
 $ jupyter notebook
