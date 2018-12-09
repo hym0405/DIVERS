@@ -16,9 +16,9 @@ code for DIVERS (Decomposition of Variance Using Replicate Sampling), including 
 
 ## Absolute abundance calculation for spike-in sequencing
 
-Usage
+### Description
 ```
-$ ./script/calculate_absolute_abundance.R [-h] [-s sample_list]
+$ usage: ./script/calculate_absolute_abundance.R [-h] [-s sample_list]
                                                [-i otu_count]
                                                [-w weight_table]
                                                [-p spikein_count]
@@ -39,9 +39,8 @@ optional arguments:
   -o output_prefix, --output output_prefix
                         prefix of output files [required]
   -r, --renormalize     renormalize bacterial densities to mean of 1
-
 ```
-
+### Input format
 make data output directory and extract spacers from the raw read data
 ```
 $ mkdir data/my_output_dir
