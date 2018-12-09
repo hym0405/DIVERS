@@ -236,7 +236,18 @@ d17s2r2 17  2   2   Y
 	- covariance of absolute abundance for each pair of OTU
 	
 * [output_prefix].covariance_decomposition_[\*].csv
-	- covariance of absolute abundance for each pair of OTU
+	- decomposed covariance of absolute abundance for each pair of OTU
+	- if [number_variance] is specified as 3, decomposed covariances will be temporal (vars_T), spatial (vars_S) and technical(vars_N) covariance.
+	- if [number_variance] is specified as 2, decomposed covariances will be temporal_spatial (vars_TS) and technical (vars_N) covariance.
+
+* [output_prefix].correlation_total.csv
+	- correlation of absolute abundance for each pair of OTU
+	
+* [output_prefix].correlation_decomposition_[\*].csv
+	- decomposed correlation of absolute abundance for each pair of OTU
+	- if [number_variance] is specified as 3, decomposed correlations will be temporal (vars_T), spatial (vars_S) and technical(vars_N) correlation.
+	- if [number_variance] is specified as 2, decomposed correlations will be temporal_spatial (vars_TS) and technical (vars_N) correlation.
+	
 
 
 ### Example
