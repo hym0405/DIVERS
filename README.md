@@ -134,7 +134,7 @@ chmod +x ./script/calculate_absolute_abundance.R
 					-i ./test_data/test.OTU_readsCount.csv \
 					-w ./test_data/test.sample_weight_tsv \
 					-p ./test_data/test.spikein_readsCount.tsv \
-					-o ./test_output/test
+					-o ./test_output/test \
 					-r
 ```
 
