@@ -77,7 +77,7 @@ otu_4,553,503,378,622,...
 
 **weight_table:** table of sample weights (mg)
 
-[example: ./test_data/test.sample_weight_tsv]
+[example: ./test_data/test.sample_weight.tsv]
 
 * the first column is sample ID and second column is sample weight
 
@@ -132,7 +132,7 @@ chmod +x ./script/calculate_absolute_abundance.R
 
 ./script/calculate_absolute_abundance.R -s ./test_data/test.sample_list.txt \
 					-i ./test_data/test.OTU_readsCount.csv \
-					-w ./test_data/test.sample_weight_tsv \
+					-w ./test_data/test.sample_weight.tsv \
 					-p ./test_data/test.spikein_readsCount.tsv \
 					-o ./test_output/test \
 					-r
