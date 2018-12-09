@@ -42,7 +42,7 @@ optional arguments:
 ```
 ### Input format
 
-****[Important] avoid any delimiter (tab or blackspace) in OTU ID and sample ID****
+****[Important] avoid any delimiter (tab or blackspace) in OTU IDs and sample IDs****
 
 **sample_list:** list of sample IDs
 
@@ -135,6 +135,7 @@ chmod +x ./script/calculate_absolute_abundance.R
 					-w ./test_data/test.sample_weight_tsv \
 					-p ./test_data/test.spikein_readsCount.tsv \
 					-o ./test_output/test
+					-r
 ```
 
 ## Variance decompostion of absolute abundance by DIVERS
@@ -165,7 +166,7 @@ optional arguments:
 
 ### Input format
 
-****[Important] avoid any delimiter (tab or blackspace) in OTU ID and sample ID****
+****[Important] avoid any delimiter (tab or blackspace) in OTU IDs and sample IDs****
 
 **abundance_matrix:** matrix of absolute abundance for each OTU and example
 
@@ -247,37 +248,17 @@ d17s2r2 17  2   2   Y
 	- decomposed correlation of absolute abundance for each pair of OTU
 	- if [number_variance] is specified as 3, decomposed correlations will be temporal (vars_T), spatial (vars_S) and technical(vars_N) correlation.
 	- if [number_variance] is specified as 2, decomposed correlations will be temporal_spatial (vars_TS) and technical (vars_N) correlation.
-	
 
 
 ### Example
 ```
-mkdir ./test_output
-chmod +x ./script/calculate_absolute_abundance.R
+chmod +x ./script/DIVERS.R
 
-./script/calculate_absolute_abundance.R -s ./test_data/test.sample_list.txt \
-					-i ./test_data/test.OTU_readsCount.csv \
-					-w ./test_data/test.sample_weight_tsv \
-					-p ./test_data/test.spikein_readsCount.tsv \
-					-o ./test_output/test
-```
-
-
-
-
-create BLAST database for determining spacer origins. this only needs to be done once. note that if the ncbi-BLAST bin is already on your path, the script can be executed without the path argument. *we only provide the reference for the main pRec/pTrig recording strain in the _ref_ folder to save space in the repo, but references for the other recording strains can be easily recreated using plasmid sequences from the _plasmid_maps_ folder.*
-```
-$ ./extraction/build_blast_db.sh [bin_path (optional)]
-```
-
-search the spacers against the BLAST database. again, note that if the ncbi-BLAST bin is already on your path, the script can be executed without the path argument.
-```
-$ ./extraction/blast_search.sh [spacer_dir] [reference_fasta] [bin_path (optional)]
-```
-
-determine unique spacers from the BLAST search results
-```
-$ ./extraction/unique_spacers.py [working_directory]
+./script/DIVERS.R -i ./test_output/test.absolute_abundance.csv \
+		  -c ./test_output/test.sample_info.config \
+		  -o ./test_output/test \
+		  -v 3
+		  -n 1000
 ```
 
 ## data analysis
