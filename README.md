@@ -8,18 +8,38 @@ code for DIVERS (Decomposition of Variance Using Replicate Sampling), including 
 	- matrixStats
 	- progress
 
-* python 3.6, jupyter 4.3.0
+* python 3.6, jupyter 4.3.0 (for data visualization)
 	- pandas
 	- numpy
 	- matplotlib
 	- _NB: Above libraries are bundled together in the [Anaconda distribution](https://www.continuum.io/downloads)_
 
-## spacer extraction and alignment workflow
+## Absolute abundance calculation for spike-in sequencing
 
-unzip gzipped fastq files from a given location to a new directory within the repo (e.g., *data/my_result_dir*)
+Usage
 ```
-$ mkdir data/my_result_dir
-$ ./extraction/find_unzip_raw_data.sh [dir_to_search] [out_dir (optional)]
+$ ./script/calculate_absolute_abundance.R [-h] [-s sample_list]
+                                               [-i otu_count]
+                                               [-w weight_table]
+                                               [-p spikein_count]
+                                               [-o output_prefix] [-r]
+
+Calculate absolute abundance for spike-in sequencing
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -s sample_list, --samples sample_list
+                        list of all samples [required]
+  -i otu_count, --input otu_count
+                        reads count matrix of OTUs(.csv) [required]
+  -w weight_table, --weight weight_table
+                        table of sample weights(mg) [required]
+  -p spikein_count, --spikein spikein_count
+                        numbers of reads mapped to spike-in strain [required]
+  -o output_prefix, --output output_prefix
+                        prefix of output files [required]
+  -r, --renormalize     renormalize bacterial densities to mean of 1
+
 ```
 
 make data output directory and extract spacers from the raw read data
