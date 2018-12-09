@@ -114,7 +114,7 @@ d17s1r1 4107
 ```
 
 ### Output for absolute abundance calculation
-Three files will be generated:
+
 * [output_prefix].total_density.tsv
 	- if -r, --renormalize is specified, the bacterial densities will be normalized to mean of 1
 
@@ -188,13 +188,13 @@ otu_4,0.00891839666578007,0.00391454631163751,0.0029535765327144,0.0168220066665
 
 [example: ./test_output/test.sample_info.config]
 
-* column 1 is sample ID and column 5 is the label of variable
+* column 1 is sample ID and column 5 is the label of variable.
 
-* column 2-4 are indices for different types of variance, and DIVERS will only take the information of sample hierarchy from column 1,2,5
+* column 2-4 are indices for different types of variance, and DIVERS will only take the information of sample hierarchy from column 1,2,5.
 
-* if [number_variance] is specified as 3, DIVERS will expect to get exactly one sample labelled as X for each **temporal index**, one sample labelled as Y for each **temporal index** and one sample labelled as Z for each **temporal index**
+* if [number_variance] is specified as 3, DIVERS will expect to get exactly one sample labelled as X for each **temporal index**, one sample labelled as Y for each **temporal index** and one sample labelled as Z for each **temporal index**.
 
-* if [number_variance] is specified as 2, DIVERS will expect to get exactly one sample labelled as X for each **temporal index** and one sample labelled as Y for each **temporal index**. Spatial index will be ignored
+* if [number_variance] is specified as 2, DIVERS will expect to get exactly one sample labelled as X for each **temporal index** and one sample labelled as Y for each **temporal index**. Spatial index can be assigned as arbitrary value.
 
 * tab-delimited
 
@@ -221,6 +221,34 @@ d17s2r1 17  2   1   X
 d17s2r2 17  2   2   Y
 ...
 ```
+
+### Output for variance decompostion by DIVERS
+
+* [output_prefix].variance_decomposition.tsv
+	- result of variance decompostion, including the **mean**, **total variance** and **decomposed variances** of absolute abundance for each OTU
+	- if [number_variance] is specified as 3, decomposed variances will be temporal(vars_T), spatial(vars_S) and technical(vars_N) variance.
+	- if [number_variance] is specified as 2, decomposed variances will be temporal_spatial(vars_TS) and technical(vars_N) variance.
+
+* [output_prefix].taylor_law_exponents.tsv
+	- taylor's law exponents for total variance and decomposed variances
+
+* [output_prefix].absolute_abundance.csv
+	- matrix of absolute abundance for each OTU and sample
+	- DIVERS will take this file as input for variance decompostion
+
+### Example
+```
+mkdir ./test_output
+chmod +x ./script/calculate_absolute_abundance.R
+
+./script/calculate_absolute_abundance.R -s ./test_data/test.sample_list.txt \
+					-i ./test_data/test.OTU_readsCount.csv \
+					-w ./test_data/test.sample_weight_tsv \
+					-p ./test_data/test.spikein_readsCount.tsv \
+					-o ./test_output/test
+```
+
+
 
 
 create BLAST database for determining spacer origins. this only needs to be done once. note that if the ncbi-BLAST bin is already on your path, the script can be executed without the path argument. *we only provide the reference for the main pRec/pTrig recording strain in the _ref_ folder to save space in the repo, but references for the other recording strains can be easily recreated using plasmid sequences from the _plasmid_maps_ folder.*
