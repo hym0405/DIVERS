@@ -226,15 +226,18 @@ d17s2r2 17  2   2   Y
 
 * [output_prefix].variance_decomposition.tsv
 	- result of variance decompostion, including the **mean**, **total variance** and **decomposed variances** of absolute abundance for each OTU
-	- if [number_variance] is specified as 3, decomposed variances will be temporal(vars_T), spatial(vars_S) and technical(vars_N) variance.
-	- if [number_variance] is specified as 2, decomposed variances will be temporal_spatial(vars_TS) and technical(vars_N) variance.
+	- if [number_variance] is specified as 3, decomposed variances will be temporal (vars_T), spatial (vars_S) and technical(vars_N) variance.
+	- if [number_variance] is specified as 2, decomposed variances will be temporal_spatial (vars_TS) and technical (vars_N) variance.
 
 * [output_prefix].taylor_law_exponents.tsv
-	- taylor's law exponents for total variance and decomposed variances
+	- taylor's law exponents for total variance and 3 or 2 decomposed variances
 
-* [output_prefix].absolute_abundance.csv
-	- matrix of absolute abundance for each OTU and sample
-	- DIVERS will take this file as input for variance decompostion
+* [output_prefix].covariance_total.csv
+	- covariance of absolute abundance for each pair of OTU
+	
+* [output_prefix].covariance_decomposition_[\*].csv
+	- covariance of absolute abundance for each pair of OTU
+
 
 ### Example
 ```
