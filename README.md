@@ -195,19 +195,18 @@ otu_4,0.00891839666578007,0.00391454631163751,0.0029535765327144,0.0168220066665
 
 **configure:** Configure file of sample hierarchy
 
-**if [number_variance] is specified as 3**
+ * if [number_variance] is specified as 3
+   [example: ./test_output/test.sample_info.variance_3.config]
+   
+   	- column 1 is sample ID and **column 5** is the variable label (X, Y or Z).
+	
+	- columns 2-4 label the time, spatial replicate, and technical replicate number of each sample. DIVERS will only take information from columns 1,2,5.
+	
+	- DIVERS will expect exactly one sample labelled as X for each **temporal index**, one sample labelled as Y for each **temporal index** and one sample labelled as Z for each **temporal index**. Spatial index can be assigned as arbitrary value.
 
-[example: ./test_output/test.sample_info.variance_3.config]
-
-* column 1 is sample ID and **column 5** is the variable label (X, Y or Z).
-
-* columns 2-4 label the time, spatial replicate, and technical replicate number of each sample. DIVERS will only take information from columns 1,2,5.
-
-* DIVERS will expect exactly one sample labelled as X for each **temporal index**, one sample labelled as Y for each **temporal index** and one sample labelled as Z for each **temporal index**. Spatial index can be assigned as arbitrary value.
-
-* tab-delimited
-
-* first row should be header (sample[tab]temporal[tab]spatial[tab]technical[tab]variable)
+	- tab-delimited
+	
+	- first row should be header (sample[tab]temporal[tab]spatial[tab]technical[tab]variable)
 
 ```
 sample  temporal    spatial technical   variable
