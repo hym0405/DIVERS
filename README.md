@@ -195,22 +195,20 @@ otu_4,0.00891839666578007,0.00391454631163751,0.0029535765327144,0.0168220066665
 
 **configure:** Configure file of sample hierarchy
 
-[example: ./test_output/test.sample_info.config]
+**if [number_variance] is specified as 3**
 
-* column 1 is sample ID and column 5 is the variable label (X, Y or Z).
+[example: ./test_output/test.sample_info.variance_3.config]
+
+* column 1 is sample ID and **column 5** is the variable label (X, Y or Z).
 
 * columns 2-4 label the time, spatial replicate, and technical replicate number of each sample. DIVERS will only take information from columns 1,2,5.
 
-* if [number_variance] is specified as 3, DIVERS will expect exactly one sample labelled as X for each **temporal index**, one sample labelled as Y for each **temporal index** and one sample labelled as Z for each **temporal index**.
-
-* if [number_variance] is specified as 2, DIVERS will expect exactly one sample labelled as X for each **temporal index** and one sample labelled as Y for each **temporal index**. Spatial index can be assigned as arbitrary value.
+* DIVERS will expect exactly one sample labelled as X for each **temporal index**, one sample labelled as Y for each **temporal index** and one sample labelled as Z for each **temporal index**. Spatial index can be assigned as arbitrary value.
 
 * tab-delimited
 
 * first row should be header (sample[tab]temporal[tab]spatial[tab]technical[tab]variable)
 
-
-**if [number_variance] is specified as 3**
 ```
 sample  temporal    spatial technical   variable
 d16s1r1 16  1   1   Z   
@@ -221,52 +219,74 @@ d17s2r1 17  2   1   X
 d17s2r2 17  2   2   Y 
 ...
 ```
+
 **if [number_variance] is specified as 2**
+
+* column 1 is sample ID and **column 4** is the variable label (X, Y).
+
+* columns 2-3 label the biological replicate and technical replicate number of each sample. DIVERS will only take information from columns 1,2,4.
+
+* DIVERS will expect exactly one sample labelled as X for each **biological index** and one sample labelled as Y for each **biological index**.
+
+* tab-delimited
+
+* first row should be header (sample[tab]biological[tab]technical[tab]variable)
+
 ```
-sample  temporal    spatial technical   variable 
-d16s2r1 16  2   1   X   
-d16s2r2 16  2   2   Y  
-d17s2r1 17  2   1   X
-d17s2r2 17  2   2   Y
+sample  biological  technical   variable
+d16s2r1 16  1   X   
+d16s2r2 16  2   Y   
+d17s2r1 17  1   X   
+d17s2r2 17  2   Y 
 ...
 ```
 
 ### Output of the DIVERS variance and covariance decomposition model
 
 * [output_prefix].variance_decomposition.tsv
-	- result of the variance decomposition, including the **mean abundance**, **total abundance variance** and **decomposed variances** of absolute abundances for each OTU
-	- if [number_variance] is specified as 3, decomposed variances reflect temporal (vars_T), spatial (vars_S) and technical (vars_N) variances.
-	- if [number_variance] is specified as 2, decomposed variances reflect biological (vars_B) and technical (vars_N) variances.
+	- result of the variance decomposition, including the **average abundance**, **total abundance variance** and **decomposed variances** of absolute abundances for each OTU
+	- if [number_variance] is specified as 3, decomposed variances reflect temporal (Temporal_variances), spatial (Spatial_variances) and technical (Technical_variances) variances.
+	- if [number_variance] is specified as 2, decomposed variances reflect biological (Biological_variances) and technical (Technical_variances) variances.
 
-* [output_prefix].taylor_law_exponents.tsv
-	- taylor's law exponents for total variance and 3 or 2 decomposed variances
+* [output_prefix].correlation_total.csv
+	- absolute abundance correlations for every pair of OTUs (average abundance > [abundance_threshold])
+	
+* [output_prefix].correlation_decomposition_[\*].csv
+	- Decomposed abundance correlations for every pair of OTUs (average abundance > [abundance_threshold])
+	- if [number_variance] is specified as 3, decomposed correlations will reflect temporal, spatial and technical correlations.
+	- if [number_variance] is specified as 2, decomposed correlations will  reflect biological and technical correlations.
+
+**if -cv, --covariance is specified**
 
 * [output_prefix].covariance_total.csv
-	- absolute abundance covariances for every pair of OTUs
+	- absolute abundance covariances for every pair of OTUs (average abundance > [abundance_threshold])
 	
 * [output_prefix].covariance_decomposition_[\*].csv
-	- decomposed abundance covariances for every pair of OTUs
+	- decomposed abundance covariances for every pair of OTUs (average abundance > [abundance_threshold])
 	- if [number_variance] is specified as 3, decomposed covariances will reflect temporal, spatial, and technical covariances.
 	- if [number_variance] is specified as 2, decomposed covariances will reflect biological and technical covariances.
 
-* [output_prefix].correlation_total.csv
-	- absolute abundance correlations for every pair of OTUs
-	
-* [output_prefix].correlation_decomposition_[\*].csv
-	- Decomposed abundance correlations for every pair of OTUs
-	- if [number_variance] is specified as 3, decomposed correlations will reflect temporal, spatial and technical correlations.
-	- if [number_variance] is specified as 2, decomposed correlations will  reflect biological and technical correlations.
 
 
 ### Example
 ```
 chmod +x ./script/DIVERS.R
 
+# For temporal, spatial and technical variance decomposition
 ./script/DIVERS.R -i ./test_output/test.absolute_abundance.csv \
-		  -c ./test_data/test.sample_info.config \
-		  -o ./test_output/test \
+		  -c ./test_data/test.sample_info.variance_3.config \
+		  -o ./test_output/test.variance_3 \
 		  -v 3 \
-		  -n 1000
+		  -t 1e-4
+		  -n 500
+		  
+# For biological and technical variance decomposition
+./script/DIVERS.R -i ./test_output/test.absolute_abundance.csv \
+		  -c ./test_data/test.sample_info.variance_2.config \
+		  -o ./test_output/test.variance_2 \
+		  -v 2 \
+		  -t 1e-4
+		  -n 500
 ```
 
 ## Data analysis
