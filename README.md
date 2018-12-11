@@ -222,7 +222,7 @@ d17s2r2 17  2   2   Y
 
 **if [number_variance] is specified as 2**
 
-* column 1 is sample ID and **column 4** is the variable label (X, Y).
+* column 1 is sample ID and **column 4** is the variable label (X or Y).
 
 * columns 2-3 label the biological replicate and technical replicate number of each sample. DIVERS will only take information from columns 1,2,4.
 
@@ -249,20 +249,20 @@ d17s2r2 17  2   Y
 	- if [number_variance] is specified as 2, decomposed variances reflect biological (Biological_variances) and technical (Technical_variances) variances.
 
 * [output_prefix].correlation_total.csv
-	- absolute abundance correlations for every pair of OTUs (average abundance > [abundance_threshold])
+	- absolute abundance correlations for every pair of OTUs **(average abundance > [abundance_threshold])**
 	
 * [output_prefix].correlation_decomposition_[\*].csv
-	- Decomposed abundance correlations for every pair of OTUs (average abundance > [abundance_threshold])
+	- Decomposed abundance correlations for every pair of OTUs **(average abundance > [abundance_threshold])**
 	- if [number_variance] is specified as 3, decomposed correlations will reflect temporal, spatial and technical correlations.
 	- if [number_variance] is specified as 2, decomposed correlations will  reflect biological and technical correlations.
 
 **if -cv, --covariance is specified**
 
 * [output_prefix].covariance_total.csv
-	- absolute abundance covariances for every pair of OTUs (average abundance > [abundance_threshold])
+	- absolute abundance covariances for every pair of OTUs **(average abundance > [abundance_threshold])**
 	
 * [output_prefix].covariance_decomposition_[\*].csv
-	- decomposed abundance covariances for every pair of OTUs (average abundance > [abundance_threshold])
+	- decomposed abundance covariances for every pair of OTUs **(average abundance > [abundance_threshold])**
 	- if [number_variance] is specified as 3, decomposed covariances will reflect temporal, spatial, and technical covariances.
 	- if [number_variance] is specified as 2, decomposed covariances will reflect biological and technical covariances.
 
