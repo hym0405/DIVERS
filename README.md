@@ -113,7 +113,7 @@ d17s1r1 4107
 ...
 ```
 
-### Output of absolute abundance calculations
+### Output of absolute abundance estimation
 
 * [output_prefix].total_density.tsv
 	- if -r, --renormalize is specified, the bacterial densities will be normalized to mean of 1
@@ -138,7 +138,7 @@ chmod +x ./script/calculate_absolute_abundance.R
 					-r
 ```
 
-## DIVERS variance and covariance decompostion of absolute abundances
+## DIVERS variance and covariance decomposition of absolute bacterial abundances
 
 ### Description
 ```
