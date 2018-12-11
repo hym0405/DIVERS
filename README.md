@@ -160,14 +160,14 @@ optional arguments:
                         be either 3 (temporal, spatial and technical) or 2
                         (biological and technical) [default: 3]
   -n number_iteration, --iteration number_iteration
-                        number of iterations to permute sampling data [default: 1000]
+                        number of iterations to permute sampling replicates [default: 1000]
 ```
 
 ### Input format
 
 ****[Important] Avoid any delimiter (tab or blackspace) in OTU IDs and sample IDs****
 
-**abundance_matrix:** Matrix of absolute abundance for each OTU and example
+**abundance_matrix:** Matrix of absolute abundances for each OTU and example
 
 [example: ./test_output/test.absolute_abundance.csv]
 
@@ -188,13 +188,13 @@ otu_4,0.00891839666578007,0.00391454631163751,0.0029535765327144,0.0168220066665
 
 [example: ./test_output/test.sample_info.config]
 
-* Column 1 is sample ID and column 5 is the label of variable.
+* Column 1 is sample ID and column 5 is the variable label (X, Y or Z).
 
-* Columns 2-4 are indices for different types of variance, and DIVERS will only take the information of sample hierarchy from columns 1,2,5.
+* Columns 2-4 label the time, spatial replicate, and technical replicate number of each sample. DIVERS will only take information from columns 1,2,5.
 
-* If [number_variance] is specified as 3, DIVERS will expect to get exactly one sample labelled as X for each **temporal index**, one sample labelled as Y for each **temporal index** and one sample labelled as Z for each **temporal index**.
+* If [number_variance] is specified as 3, DIVERS will expect exactly one sample labelled as X for each **temporal index**, one sample labelled as Y for each **temporal index** and one sample labelled as Z for each **temporal index**.
 
-* If [number_variance] is specified as 2, DIVERS will expect to get exactly one sample labelled as X for each **temporal index** and one sample labelled as Y for each **temporal index**. Spatial index can be assigned as arbitrary value.
+* If [number_variance] is specified as 2, DIVERS will expect exactly one sample labelled as X for each **temporal index** and one sample labelled as Y for each **temporal index**. Spatial index can be assigned as arbitrary value.
 
 * Tab-delimited
 
@@ -222,12 +222,12 @@ d17s2r2 17  2   2   Y
 ...
 ```
 
-### Output for variance decompostion by DIVERS
+### Output of the DIVERS variance decompostion model
 
 * [output_prefix].variance_decomposition.tsv
 	- result of variance decompostion, including the **mean**, **total variance** and **decomposed variances** of absolute abundance for each OTU
 	- if [number_variance] is specified as 3, decomposed variances will be temporal (vars_T), spatial (vars_S) and technical(vars_N) variance.
-	- if [number_variance] is specified as 2, decomposed variances will be temporal_spatial (vars_TS) and technical (vars_N) variance.
+	- if [number_variance] is specified as 2, decomposed variances will be biological (vars_B) and technical (vars_N) variance.
 
 * [output_prefix].taylor_law_exponents.tsv
 	- taylor's law exponents for total variance and 3 or 2 decomposed variances
@@ -262,7 +262,7 @@ chmod +x ./script/DIVERS.R
 
 ## Data analysis
 
-We have provided some example analysis code to investigate the resulting data. check out the demo notebook, where we analyze the DIVERS result of fecal samples spike-in sequencing from Fig. 1d and Fig. 3a/b in the manuscript [_demo/DIVERS_analysis.ipynb_](demo/DIVERS_analysis.ipynb)
+We have provided some example analysis code to investigate the resulting data. Check out the demo notebook, where we analyze the DIVERS result of fecal samples spike-in sequencing from Fig. 1d and Fig. 3a/b in the manuscript [_demo/DIVERS_analysis.ipynb_](demo/DIVERS_analysis.ipynb)
 ```
 $ cd demo
 $ jupyter notebook
