@@ -226,28 +226,28 @@ d17s2r2 17  2   2   Y
 ### Output of the DIVERS variance and covariance decompostion model
 
 * [output_prefix].variance_decomposition.tsv
-	- result of variance decompostion, including the **mean**, **total variance** and **decomposed variances** of absolute abundance for each OTU
-	- if [number_variance] is specified as 3, decomposed variances will be temporal (vars_T), spatial (vars_S) and technical(vars_N) variance.
-	- if [number_variance] is specified as 2, decomposed variances will be biological (vars_B) and technical (vars_N) variance.
+	- result of the variance decompostion, including the **mean abundance**, **total abundance variance** and **decomposed variances** of absolute abundances for each OTU
+	- if [number_variance] is specified as 3, decomposed variances reflect temporal (vars_T), spatial (vars_S) and technical (vars_N) variances.
+	- if [number_variance] is specified as 2, decomposed variances reflect biological (vars_B) and technical (vars_N) variances.
 
 * [output_prefix].taylor_law_exponents.tsv
 	- taylor's law exponents for total variance and 3 or 2 decomposed variances
 
 * [output_prefix].covariance_total.csv
-	- covariance of absolute abundance for each pair of OTU
+	- absolute abundance covariances for every pair of OTUs
 	
 * [output_prefix].covariance_decomposition_[\*].csv
-	- decomposed covariance of absolute abundance for each pair of OTU
-	- if [number_variance] is specified as 3, decomposed covariances will be temporal (vars_T), spatial (vars_S) and technical(vars_N) covariance.
-	- if [number_variance] is specified as 2, decomposed covariances will be temporal_spatial (vars_TS) and technical (vars_N) covariance.
+	- decomposed abundance covariances for every pair of OTUs
+	- if [number_variance] is specified as 3, decomposed covariances will reflect temporal, spatial, and technical covariances.
+	- if [number_variance] is specified as 2, decomposed covariances will reflect biological and technical covariances.
 
 * [output_prefix].correlation_total.csv
-	- correlation of absolute abundance for each pair of OTU
+	- absolute abundance correlations for every pair of OTUs
 	
 * [output_prefix].correlation_decomposition_[\*].csv
-	- decomposed correlation of absolute abundance for each pair of OTU
-	- if [number_variance] is specified as 3, decomposed correlations will be temporal (vars_T), spatial (vars_S) and technical(vars_N) correlation.
-	- if [number_variance] is specified as 2, decomposed correlations will be temporal_spatial (vars_TS) and technical (vars_N) correlation.
+	- Decomposed abundance correlations for every pair of OTUs
+	- if [number_variance] is specified as 3, decomposed correlations will reflect temporal, spatial and technical correlations.
+	- if [number_variance] is specified as 2, decomposed correlations will  reflect biological and technical correlations.
 
 
 ### Example
