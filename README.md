@@ -144,24 +144,32 @@ chmod +x ./script/calculate_absolute_abundance.R
 ```
 usage: ./script/DIVERS.R [-h] [-i abundance_matrix] [-c configure]
                          [-o output_prefix] [-v number_variance]
-                         [-n number_iteration]
+                         [-n number_iteration] [-t abundance_threshold] [-cv]
 
-DIVERS: Decomposition of variance using replicate sampling
+DIVERS: decomposition of variance using replicate sampling
 
 optional arguments:
   -h, --help            show this help message and exit
   -i abundance_matrix, --input abundance_matrix
-                        matrix of absolute abundances (.csv) [required]
+                        matrix of absolute abundance(.csv) [required]
   -c configure, --config configure
                         configure file of sample hierarchy [required]
   -o output_prefix, --output output_prefix
                         prefix of output files [required]
   -v number_variance, --variance number_variance
-                        Number of variance contributions to decompose, should
+                        depth of variance hierarchy to be decomposed, should
                         be either 3 (temporal, spatial and technical) or 2
                         (biological and technical) [default: 3]
   -n number_iteration, --iteration number_iteration
-                        number of iterations to permute sampling replicates [default: 1000]
+                        number of iterations [default: 500]
+  -t abundance_threshold, --threshold abundance_threshold
+                        abundance threshold for covariance decomposition,
+                        DIVERS will only perform covariance decomposition for
+                        OTUs with average abundance greater than
+                        abundance_threshold [default: 1e-4]
+  -cv, --covariance     write total and decomposed covariance matrices to
+                        output. By default, DIVERS will only write total and
+                        decomposed correlation matrices to output
 ```
 
 ### Input format
