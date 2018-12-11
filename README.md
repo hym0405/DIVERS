@@ -199,11 +199,11 @@ otu_4,0.00891839666578007,0.00391454631163751,0.0029535765327144,0.0168220066665
  
    [example: ./test_output/test.sample_info.variance_3.config]
    
-   	- column 1 is sample ID and **column 5** is the variable label (X, Y or Z).
+	- column 1 is sample ID and **column 5** is the variable label (X, Y or Z).
 	
-	- columns 2-4 label the time, spatial replicate, and technical replicate number of each sample. DIVERS will only take information from columns 1,2,5.
-	
-	- DIVERS will expect exactly one sample labelled as X for each **temporal index**, one sample labelled as Y for each **temporal index** and one sample labelled as Z for each **temporal index**. Spatial index can be assigned as arbitrary value.
+	- columns 2-4 label the time, spatial replicate, and technical replicate number of each sample. DIVERS will only take information from columns 1,2,5. Spatial (column 3) and technical (column 4) index can be assigned as arbitrary value.
+
+	- DIVERS will expect exactly one sample labelled as X for each **temporal index**, one sample labelled as Y for each **temporal index** and one sample labelled as Z for each **temporal index**.
 
 	- tab-delimited
 	
@@ -222,9 +222,11 @@ d17s2r2 17  2   2   Y
 
  * **if [number_variance] is specified as 2**
  
+    [example: ./test_output/test.sample_info.variance_2.config]
+    
  	- column 1 is sample ID and **column 4** is the variable label (X or Y).
 	
-	- columns 2-3 label the biological replicate and technical replicate number of each sample. DIVERS will only take information from columns 1,2,4.
+	- columns 2-3 label the biological replicate and technical replicate number of each sample. DIVERS will only take information from columns 1,2,4. Technical (column 3) index can be assigned as arbitrary value.
 	
 	- DIVERS will expect exactly one sample labelled as X for each **biological index** and one sample labelled as Y for each **biological index**.
 	
