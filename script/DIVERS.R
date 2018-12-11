@@ -146,6 +146,14 @@ message()
 
 OTUs.pass <- as.character(df.varianceResult[which(df.varianceResult$means_total > abundance_threshold), "OTU"])
 
+if (length(OTUs.pass) == 0){
+	message(paste("There is no OTU with average abundance greater than ", abundance_threshold, sep = ""))
+	message("Skip covariance decompostion...")
+	message()
+	message("DIVERS complete!")
+	message()
+	quit()
+}
 
 message("3.Calculate total covariances...")
 if (types_variance == 3){
