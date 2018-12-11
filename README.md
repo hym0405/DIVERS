@@ -1,7 +1,7 @@
 # DIVERS: Decomposition of Variance Using Replicate Sampling
 code for DIVERS (Decomposition of Variance Using Replicate Sampling), including absolute abundance calculation for spike-in sequencing and variance decompostion of absolute abundance.
 
-## dependencies
+## Dependencies
 
 * R (we have tested this code for R version 3.5.0)
 	- argparse
@@ -31,20 +31,20 @@ optional arguments:
   -s sample_list, --samples sample_list
                         list of all samples [required]
   -i otu_count, --input otu_count
-                        reads count matrix of OTUs(.csv) [required]
+                        reads count matrix of OTUs (spike-in OTU removed) (.csv) [required]
   -w weight_table, --weight weight_table
                         table of sample weights(mg) [required]
   -p spikein_count, --spikein spikein_count
-                        numbers of reads mapped to spike-in strain [required]
+                        numbers of reads mapped to spike-in OTU [required]
   -o output_prefix, --output output_prefix
                         prefix of output files [required]
-  -r, --renormalize     renormalize bacterial densities to mean of 1
+  -r, --renormalize     renormalize total bacterial densities to mean of 1
 ```
 ### Input format
 
-****[Important] avoid any delimiter (tab or blackspace) in OTU IDs and sample IDs****
+****[Important] Avoid any delimiter (tab or blackspace) in OTU IDs and sample IDs****
 
-**sample_list:** list of sample IDs
+**sample_list:** List of sample IDs
 
 [example: ./test_data/test.sample_list.txt]
 
@@ -56,15 +56,15 @@ d17s1r1
 ...
 ```
 
-**otu_count:** matrix of reads counts for each OTU and sample
+**otu_count:** Matrix of reads counts for each OTU and sample. Spike-in OTU read counts should be removed.
 
 [example: ./test_data/test.OTU_readsCount.csv]
 
-* each row is a OTU and each column is a sample
+* Each row is a OTU and each column is a sample
 
-* the matrix should be provided in CSV format
+* Matrix should be provided in CSV format
 
-* reads counts for spike-in strain are excluded
+* Reads counts for spike-in strain are excluded
 
 ```
 ,d16s1r1,d16s2r1,d16s2r2,d17s1r1,...
@@ -75,15 +75,15 @@ otu_4,553,503,378,622,...
 ...
 ```
 
-**weight_table:** table of sample weights (mg)
+**weight_table:** Table of sample weights (mg)
 
 [example: ./test_data/test.sample_weight.tsv]
 
-* the first column is sample ID and second column is sample weight
+* First column is sample ID and second column is sample weight
 
-* tab-delimited
+* Tab-delimited
 
-* first row should be header (sample[tab]weight)
+* First row should be header (sample[tab]weight)
 
 ```
 sample  weight
@@ -94,15 +94,14 @@ d17s1r1 49.5
 ...
 ```
 
-**spikein_count:** table of reads counts of spike-in strain
+**spikein_count:** Table of read counts of the spike-in OTU
 
 [example: ./test_data/test.spikein_readsCount.tsv]
 
-* the first column is sample ID and second column is number of reads mapped to spike-in strain
+* First column is sample ID and second column is number of spike-in OTU reads
+* Tab-delimited
 
-* tab-delimited
-
-* first row should be header (sample[tab]spikein)
+* First row should be header (sample[tab]spikein)
 
 ```
 sample  spikein
@@ -119,11 +118,11 @@ d17s1r1 4107
 	- if -r, --renormalize is specified, the bacterial densities will be normalized to mean of 1
 
 * [output_prefix].relative_abundance.csv
-	- matrix of relative abundance for each OTU and sample
+	- matrix of relative abundances for each OTU and sample
 
 * [output_prefix].absolute_abundance.csv
-	- matrix of absolute abundance for each OTU and sample
-	- DIVERS will take this file as input for variance decompostion
+	- matrix of absolute abundances for each OTU and sample
+	- DIVERS will take this file as input for the variance/covariance decompostion
 
 ### Example
 ```
