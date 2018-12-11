@@ -8,7 +8,7 @@ Code for DIVERS (Decomposition of Variance Using Replicate Sampling), including 
 	- matrixStats
 	- progress
 
-* Python 3.6, jupyter 4.3.0 (for data visualization)
+* Python 3.6, jupyter 4.3.0 (for results analysis)
 	- pandas
 	- numpy
 	- matplotlib
