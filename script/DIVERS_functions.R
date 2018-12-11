@@ -3,24 +3,34 @@ library(matrixStats)
 library(progress)
 
 checkConfig <- function(df.config, path_config, number_variance){
-    temporal.list <- unique(df.config$temporal)
+	if (number_variance == 3){
+	    temporal.list <- unique(df.config$temporal)
+		labelV <- "temporal"
+	}else{
+		temporal.list <- unique(df.config$biological)
+		labelV <- "biological"
+	}
     flag = 0
     for (i in 1:length(temporal.list)){
-        tmp.df <- df.config[which(df.config$temporal == temporal.list[i]),]
+		if (number_variance == 3){
+        	tmp.df <- df.config[which(df.config$temporal == temporal.list[i]),]
+		}else{
+			tmp.df <- df.config[which(df.config$biological == temporal.list[i]),]
+		}
         if (length(tmp.df[which(tmp.df$variable == "X"),"variable"]) > 1){
-            message(paste("Error: multiple variable X are found for temporal ", temporal.list[i], " in ", path_config, sep = ""))
+            message(paste("Error: multiple variable X are found for ", labelV, " ",temporal.list[i], " in ", path_config, sep = ""))
             flag = 1
         }
         if (length(tmp.df[which(tmp.df$variable == "X"),"variable"]) == 0){
-            message(paste("Error: variable X is not found for temporal ", temporal.list[i], " in ", path_config, sep = ""))
+            message(paste("Error: variable X is not found for ", labelV, " ", temporal.list[i], " in ", path_config, sep = ""))
             flag = 1
         }
         if (length(tmp.df[which(tmp.df$variable == "Y"),"variable"]) > 1){
-            message(paste("Error: multiple variable Y are found for temporal ", temporal.list[i], " in ", path_config, sep = ""))
+            message(paste("Error: multiple variable Y are found for ", labelV, " ", temporal.list[i], " in ", path_config, sep = ""))
             flag = 1
         }
         if (length(tmp.df[which(tmp.df$variable == "Y"),"variable"]) == 0){
-            message(paste("Error: variable Y is not found for temporal ", temporal.list[i], " in ", path_config, sep = ""))
+            message(paste("Error: variable Y is not found for ", labelV, " ", temporal.list[i], " in ", path_config, sep = ""))
             flag = 1
         }
 		if (number_variance == 3){
@@ -38,20 +48,27 @@ checkConfig <- function(df.config, path_config, number_variance){
 }
 
 getXYZsamples <- function(data.config, temporal.list, types_variance){
-	tmp.df.X <- data.config[which(data.config$variable == "X"),]
-	rownames(tmp.df.X) <- tmp.df.X$temporal
-	Xsamples <- tmp.df.X[temporal.list,"sample"]
-
-	tmp.df.Y <- data.config[which(data.config$variable == "Y"),]
-	rownames(tmp.df.Y) <- tmp.df.Y$temporal
-	Ysamples <- tmp.df.Y[temporal.list,"sample"]
-
 	if (types_variance == 3){
+		tmp.df.X <- data.config[which(data.config$variable == "X"),]
+		rownames(tmp.df.X) <- tmp.df.X$temporal
+		Xsamples <- tmp.df.X[temporal.list,"sample"]
+
+		tmp.df.Y <- data.config[which(data.config$variable == "Y"),]
+		rownames(tmp.df.Y) <- tmp.df.Y$temporal
+		Ysamples <- tmp.df.Y[temporal.list,"sample"]
+
 		tmp.df.Z <- data.config[which(data.config$variable == "Z"),]
 		rownames(tmp.df.Z) <- tmp.df.Z$temporal
 		Zsamples <- tmp.df.Z[temporal.list,"sample"]
 		return(list(Xsamples, Ysamples, Zsamples))
 	}else{
+		tmp.df.X <- data.config[which(data.config$variable == "X"),]
+		rownames(tmp.df.X) <- tmp.df.X$biological
+		Xsamples <- tmp.df.X[temporal.list,"sample"]
+
+		tmp.df.Y <- data.config[which(data.config$variable == "Y"),]
+		rownames(tmp.df.Y) <- tmp.df.Y$biological
+		Ysamples <- tmp.df.Y[temporal.list,"sample"]
 		return(list(Xsamples, Ysamples))
 	}
 }	
@@ -135,10 +152,10 @@ varianceDecomposition_dual <- function(data.abs.X, data.abs.Y, number_OTU, numbe
 		covs_XY[,i] <- diag(cov(t(data_X_perm), t(data_Y_perm)))
 		vars_XmY[,i] <- diag(cov(t(data_X_perm - data_Y_perm), t(data_X_perm - data_Y_perm))) / 2
 	}
-	vars_TS <- rowMeans(covs_XY)
-	vars_TS[which(vars_TS < 0)] = 0
+	vars_B <- rowMeans(covs_XY)
+	vars_B[which(vars_B < 0)] = 0
 	vars_N <- rowMeans(vars_XmY)
-	out.df <- data.frame(row.names = rownames(data.abs.X), OTU =  rownames(data.abs.X), vars_TS = vars_TS, vars_N = vars_N)
+	out.df <- data.frame(row.names = rownames(data.abs.X), OTU =  rownames(data.abs.X), vars_B = vars_B, vars_N = vars_N)
 	return(out.df)
 }
 
@@ -212,7 +229,7 @@ covarianceDecomposition <- function(data.abs.X, data.abs.Y, data.abs.Z, number_O
 }
 
 covarianceDecomposition_dual <- function(data.abs.X, data.abs.Y, number_OTU, number_temporal, number_iteration){
-	crosscovs_TS <- matrix(nrow = number_OTU * number_OTU, ncol = number_iteration)
+	crosscovs_B <- matrix(nrow = number_OTU * number_OTU, ncol = number_iteration)
 	crosscovs_N <- matrix(nrow = number_OTU * number_OTU, ncol = number_iteration)
 	data.abs.XY <- cbind(data.abs.X, data.abs.Y)
 	pb <- progress_bar$new(format = "  processing [:bar] :current/:total eta: :eta", total = number_iteration, clear = FALSE, width = 60)
@@ -226,13 +243,13 @@ covarianceDecomposition_dual <- function(data.abs.X, data.abs.Y, number_OTU, num
 
 		covmat_XY <- cov(t(data_X_perm), t(data_Y_perm))
 		covmat_YX <- cov(t(data_Y_perm), t(data_X_perm))
-		crosscovs_TS[,i] <- as.vector((covmat_XY + covmat_YX) / 2)
+		crosscovs_B[,i] <- as.vector((covmat_XY + covmat_YX) / 2)
 	
 		covmat_XmY <- cov(t(data_X_perm - data_Y_perm), t(data_X_perm - data_Y_perm))
 		crosscovs_N[,i] <- as.vector(covmat_XmY / 2)
 
 	}
-	covs_TS <- matrix(rowMeans(crosscovs_TS), nrow = number_OTU, ncol = number_OTU)
+	covs_B <- matrix(rowMeans(crosscovs_B), nrow = number_OTU, ncol = number_OTU)
 	covs_N <- matrix(rowMeans(crosscovs_N), nrow = number_OTU, ncol = number_OTU)
-	return(list(covs_TS, covs_N))
+	return(list(covs_B, covs_N))
 }
