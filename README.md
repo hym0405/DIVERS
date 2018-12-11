@@ -1,5 +1,5 @@
 # DIVERS: Decomposition of Variance Using Replicate Sampling
-code for DIVERS (Decomposition of Variance Using Replicate Sampling), including absolute abundance calculation for spike-in sequencing and variance decompostion of absolute abundance.
+Code for DIVERS (Decomposition of Variance Using Replicate Sampling), including absolute abundance estimation from spike-in sequencing and the variance/covariance decompostion of absolute bacterial abundances.
 
 ## Dependencies
 
