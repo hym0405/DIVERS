@@ -209,28 +209,28 @@ otu_4,0.00891839666578007,0.00391454631163751,0.0029535765327144,0.0168220066665
 	
 	- first row should be header (sample[tab]temporal[tab]spatial[tab]technical[tab]variable)
 
-  ```
-  sample  temporal    spatial technical   variable
-  d16s1r1 16  1   1   Z   
-  d16s2r1 16  2   1   X   
-  d16s2r2 16  2   2   Y   
-  d17s1r1 17  1   1   Z   
-  d17s2r1 17  2   1   X   
-  d17s2r2 17  2   2   Y 
-  ...
-  ```
+```
+sample  temporal    spatial technical   variable
+d16s1r1 16  1   1   Z   
+d16s2r1 16  2   1   X   
+d16s2r2 16  2   2   Y   
+d17s1r1 17  1   1   Z   
+d17s2r1 17  2   1   X   
+d17s2r2 17  2   2   Y 
+...
+```
 
-**if [number_variance] is specified as 2**
+ * **if [number_variance] is specified as 2**
+ 
+ 	- column 1 is sample ID and **column 4** is the variable label (X or Y).
+	
+	- columns 2-3 label the biological replicate and technical replicate number of each sample. DIVERS will only take information from columns 1,2,4.
+	
+	- DIVERS will expect exactly one sample labelled as X for each **biological index** and one sample labelled as Y for each **biological index**.
+	
+	- tab-delimited
 
-* column 1 is sample ID and **column 4** is the variable label (X or Y).
-
-* columns 2-3 label the biological replicate and technical replicate number of each sample. DIVERS will only take information from columns 1,2,4.
-
-* DIVERS will expect exactly one sample labelled as X for each **biological index** and one sample labelled as Y for each **biological index**.
-
-* tab-delimited
-
-* first row should be header (sample[tab]biological[tab]technical[tab]variable)
+	- first row should be header (sample[tab]biological[tab]technical[tab]variable)
 
 ```
 sample  biological  technical   variable
