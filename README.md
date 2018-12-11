@@ -195,7 +195,8 @@ otu_4,0.00891839666578007,0.00391454631163751,0.0029535765327144,0.0168220066665
 
 **configure:** Configure file of sample hierarchy
 
- * if [number_variance] is specified as 3
+ * **if [number_variance] is specified as 3**
+ 
    [example: ./test_output/test.sample_info.variance_3.config]
    
    	- column 1 is sample ID and **column 5** is the variable label (X, Y or Z).
@@ -208,16 +209,16 @@ otu_4,0.00891839666578007,0.00391454631163751,0.0029535765327144,0.0168220066665
 	
 	- first row should be header (sample[tab]temporal[tab]spatial[tab]technical[tab]variable)
 
-```
-sample  temporal    spatial technical   variable
-d16s1r1 16  1   1   Z   
-d16s2r1 16  2   1   X   
-d16s2r2 16  2   2   Y   
-d17s1r1 17  1   1   Z   
-d17s2r1 17  2   1   X   
-d17s2r2 17  2   2   Y 
-...
-```
+  ```
+  sample  temporal    spatial technical   variable
+  d16s1r1 16  1   1   Z   
+  d16s2r1 16  2   1   X   
+  d16s2r2 16  2   2   Y   
+  d17s1r1 17  1   1   Z   
+  d17s2r1 17  2   1   X   
+  d17s2r2 17  2   2   Y 
+  ...
+  ```
 
 **if [number_variance] is specified as 2**
 
