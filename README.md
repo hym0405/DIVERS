@@ -138,7 +138,7 @@ chmod +x ./script/calculate_absolute_abundance.R
 					-r
 ```
 
-## DIVERS variance decompostion of absolute abundances
+## DIVERS variance and covariance decompostion of absolute abundances
 
 ### Description
 ```
@@ -223,7 +223,7 @@ d17s2r2 17  2   2   Y
 ...
 ```
 
-### Output of the DIVERS variance decompostion model
+### Output of the DIVERS variance and covariance decompostion model
 
 * [output_prefix].variance_decomposition.tsv
 	- result of variance decompostion, including the **mean**, **total variance** and **decomposed variances** of absolute abundance for each OTU
