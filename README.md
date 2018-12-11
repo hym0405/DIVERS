@@ -14,7 +14,7 @@ Code for DIVERS (Decomposition of Variance Using Replicate Sampling), including 
 	- matplotlib
 	- _NB: Above libraries are bundled together in the [Anaconda distribution](https://www.continuum.io/downloads)_
 
-## Absolute abundance calculation for spike-in sequencing
+## Absolute abundance estimation from spike-in sequencing
 
 ### Description
 ```
@@ -24,7 +24,7 @@ usage: ./script/calculate_absolute_abundance.R [-h] [-s sample_list]
                                                [-p spikein_count]
                                                [-o output_prefix] [-r]
 
-Calculate absolute abundance for spike-in sequencing
+Calculate absolute abundances from spike-in sequencing
 
 optional arguments:
   -h, --help            show this help message and exit
@@ -60,11 +60,11 @@ d17s1r1
 
 [example: ./test_data/test.OTU_readsCount.csv]
 
-* Each row is a OTU and each column is a sample
+* each row is a OTU and each column is a sample
 
-* Matrix should be provided in CSV format
+* matrix should be provided in CSV format
 
-* Reads counts for spike-in strain are excluded
+* reads counts from spike-in OTU are excluded
 
 ```
 ,d16s1r1,d16s2r1,d16s2r2,d17s1r1,...
@@ -79,11 +79,11 @@ otu_4,553,503,378,622,...
 
 [example: ./test_data/test.sample_weight.tsv]
 
-* First column is sample ID and second column is sample weight
+* first column is sample ID and second column is sample weight
 
-* Tab-delimited
+* tab-delimited
 
-* First row should be header (sample[tab]weight)
+* first row should be header (sample[tab]weight)
 
 ```
 sample  weight
@@ -98,8 +98,9 @@ d17s1r1 49.5
 
 [example: ./test_data/test.spikein_readsCount.tsv]
 
-* First column is sample ID and second column is number of spike-in OTU reads
-* Tab-delimited
+* first column is sample ID and second column is number of spike-in OTU reads
+
+* tab-delimited
 
 * First row should be header (sample[tab]spikein)
 
@@ -112,7 +113,7 @@ d17s1r1 4107
 ...
 ```
 
-### Output for absolute abundance calculation
+### Output of absolute abundance calculations
 
 * [output_prefix].total_density.tsv
 	- if -r, --renormalize is specified, the bacterial densities will be normalized to mean of 1
@@ -137,7 +138,7 @@ chmod +x ./script/calculate_absolute_abundance.R
 					-r
 ```
 
-## Variance decompostion of absolute abundance by DIVERS
+## DIVERS variance decompostion of absolute abundances
 
 ### Description
 ```
@@ -171,9 +172,9 @@ optional arguments:
 
 [example: ./test_output/test.absolute_abundance.csv]
 
-* Each row is a OTU and each column is a sample
+* each row is a OTU and each column is a sample
 
-* Matrix should be provided in CSV format
+* matrix should be provided in CSV format
 
 ```
 ,d16s1r1,d16s2r1,d16s2r2,d17s1r1,...
@@ -188,17 +189,17 @@ otu_4,0.00891839666578007,0.00391454631163751,0.0029535765327144,0.0168220066665
 
 [example: ./test_output/test.sample_info.config]
 
-* Column 1 is sample ID and column 5 is the variable label (X, Y or Z).
+* column 1 is sample ID and column 5 is the variable label (X, Y or Z).
 
-* Columns 2-4 label the time, spatial replicate, and technical replicate number of each sample. DIVERS will only take information from columns 1,2,5.
+* columns 2-4 label the time, spatial replicate, and technical replicate number of each sample. DIVERS will only take information from columns 1,2,5.
 
-* If [number_variance] is specified as 3, DIVERS will expect exactly one sample labelled as X for each **temporal index**, one sample labelled as Y for each **temporal index** and one sample labelled as Z for each **temporal index**.
+* if [number_variance] is specified as 3, DIVERS will expect exactly one sample labelled as X for each **temporal index**, one sample labelled as Y for each **temporal index** and one sample labelled as Z for each **temporal index**.
 
-* If [number_variance] is specified as 2, DIVERS will expect exactly one sample labelled as X for each **temporal index** and one sample labelled as Y for each **temporal index**. Spatial index can be assigned as arbitrary value.
+* if [number_variance] is specified as 2, DIVERS will expect exactly one sample labelled as X for each **temporal index** and one sample labelled as Y for each **temporal index**. Spatial index can be assigned as arbitrary value.
 
-* Tab-delimited
+* tab-delimited
 
-* First row should be header (sample[tab]temporal[tab]spatial[tab]technical[tab]variable)
+* first row should be header (sample[tab]temporal[tab]spatial[tab]technical[tab]variable)
 
 
 **if [number_variance] is specified as 3**
