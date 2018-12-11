@@ -145,35 +145,35 @@ usage: ./script/DIVERS.R [-h] [-i abundance_matrix] [-c configure]
                          [-o output_prefix] [-v number_variance]
                          [-n number_iteration]
 
-DIVERS: decomposition of variance using replicate sampling
+DIVERS: Decomposition of variance using replicate sampling
 
 optional arguments:
   -h, --help            show this help message and exit
   -i abundance_matrix, --input abundance_matrix
-                        matrix of absolute abundance(.csv) [required]
+                        matrix of absolute abundances (.csv) [required]
   -c configure, --config configure
                         configure file of sample hierarchy [required]
   -o output_prefix, --output output_prefix
                         prefix of output files [required]
   -v number_variance, --variance number_variance
-                        depth of variance hierarchy to be decomposed, should
+                        Number of variance contributions to decompose, should
                         be either 3 (temporal, spatial and technical) or 2
-                        (temporal_spatial and technical) [default: 3]
+                        (biological and technical) [default: 3]
   -n number_iteration, --iteration number_iteration
-                        number of iterations [default: 1000]
+                        number of iterations to permute sampling data [default: 1000]
 ```
 
 ### Input format
 
-****[Important] avoid any delimiter (tab or blackspace) in OTU IDs and sample IDs****
+****[Important] Avoid any delimiter (tab or blackspace) in OTU IDs and sample IDs****
 
-**abundance_matrix:** matrix of absolute abundance for each OTU and example
+**abundance_matrix:** Matrix of absolute abundance for each OTU and example
 
 [example: ./test_output/test.absolute_abundance.csv]
 
-* each row is a OTU and each column is a sample
+* Each row is a OTU and each column is a sample
 
-* the matrix should be provided in CSV format
+* Matrix should be provided in CSV format
 
 ```
 ,d16s1r1,d16s2r1,d16s2r2,d17s1r1,...
@@ -184,21 +184,21 @@ otu_4,0.00891839666578007,0.00391454631163751,0.0029535765327144,0.0168220066665
 ...
 ```
 
-**configure:** configure file of sample hierarchy
+**configure:** Configure file of sample hierarchy
 
 [example: ./test_output/test.sample_info.config]
 
-* column 1 is sample ID and column 5 is the label of variable.
+* Column 1 is sample ID and column 5 is the label of variable.
 
-* column 2-4 are indices for different types of variance, and DIVERS will only take the information of sample hierarchy from column 1,2,5.
+* Columns 2-4 are indices for different types of variance, and DIVERS will only take the information of sample hierarchy from columns 1,2,5.
 
-* if [number_variance] is specified as 3, DIVERS will expect to get exactly one sample labelled as X for each **temporal index**, one sample labelled as Y for each **temporal index** and one sample labelled as Z for each **temporal index**.
+* If [number_variance] is specified as 3, DIVERS will expect to get exactly one sample labelled as X for each **temporal index**, one sample labelled as Y for each **temporal index** and one sample labelled as Z for each **temporal index**.
 
-* if [number_variance] is specified as 2, DIVERS will expect to get exactly one sample labelled as X for each **temporal index** and one sample labelled as Y for each **temporal index**. Spatial index can be assigned as arbitrary value.
+* If [number_variance] is specified as 2, DIVERS will expect to get exactly one sample labelled as X for each **temporal index** and one sample labelled as Y for each **temporal index**. Spatial index can be assigned as arbitrary value.
 
-* tab-delimited
+* Tab-delimited
 
-* first row should be header (sample[tab]temporal[tab]spatial[tab]technical[tab]variable)
+* First row should be header (sample[tab]temporal[tab]spatial[tab]technical[tab]variable)
 
 
 **if [number_variance] is specified as 3**
@@ -260,7 +260,7 @@ chmod +x ./script/DIVERS.R
 		  -n 1000
 ```
 
-## data analysis
+## Data analysis
 
 We have provided some example analysis code to investigate the resulting data. check out the demo notebook, where we analyze the DIVERS result of fecal samples spike-in sequencing from Fig. 1d and Fig. 3a/b in the manuscript [_demo/DIVERS_analysis.ipynb_](demo/DIVERS_analysis.ipynb)
 ```
