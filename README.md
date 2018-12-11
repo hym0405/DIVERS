@@ -123,7 +123,7 @@ d17s1r1 4107
 
 * [output_prefix].absolute_abundance.csv
 	- matrix of absolute abundances for each OTU and sample
-	- DIVERS will take this file as input for the variance/covariance decompostion
+	- DIVERS will take this file as input for the variance/covariance decomposition
 
 ### Example
 ```
@@ -223,10 +223,10 @@ d17s2r2 17  2   2   Y
 ...
 ```
 
-### Output of the DIVERS variance and covariance decompostion model
+### Output of the DIVERS variance and covariance decomposition model
 
 * [output_prefix].variance_decomposition.tsv
-	- result of the variance decompostion, including the **mean abundance**, **total abundance variance** and **decomposed variances** of absolute abundances for each OTU
+	- result of the variance decomposition, including the **mean abundance**, **total abundance variance** and **decomposed variances** of absolute abundances for each OTU
 	- if [number_variance] is specified as 3, decomposed variances reflect temporal (vars_T), spatial (vars_S) and technical (vars_N) variances.
 	- if [number_variance] is specified as 2, decomposed variances reflect biological (vars_B) and technical (vars_N) variances.
 
