@@ -56,9 +56,23 @@ data.abs <- read.csv(path_abs, stringsAsFactors = F, header = T, row.names = 1)
 data.config <- read.table(path_config, stringsAsFactors = F, header = T)
 
 if (types_variance == 3){
-	colnames(data.config) <- c("sample","temporal", "spatial", "technical", "variable")
+	if (ncol(data.config) != 5){
+		message("Error: format of configure file is wrong")
+		message("Exit!")
+		message()
+		quit()
+	}else{
+		colnames(data.config) <- c("sample","temporal", "spatial", "technical", "variable")
+	}
 }else{
-	colnames(data.config) <- c("sample","biological", "technical", "variable")
+	if (ncol(data.config) != 4){
+		message("Error: format of configure file is wrong")
+		message("Exit!")
+		message()
+		quit()
+	}else{
+		colnames(data.config) <- c("sample","biological", "technical", "variable")
+	}
 }
 
 message("0.Check configure file...")
