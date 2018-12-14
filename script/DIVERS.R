@@ -72,9 +72,9 @@ message("Complete!")
 message()
 
 if (types_variance == 3){
-	temporal.list <- unique(data.config$temporal)
+	temporal.list <- as.character(unique(data.config$temporal))
 }else{
-	temporal.list <- unique(data.config$biological)
+	temporal.list <- as.character(unique(data.config$biological))
 }
 
 number_temporal <- length(temporal.list)
